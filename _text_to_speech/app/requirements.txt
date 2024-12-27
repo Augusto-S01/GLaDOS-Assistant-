@@ -1,0 +1,13 @@
+kafka-python
+torch
+unidecode
+inflect
+dp
+numpy
+phonemizer
+scipy
+pydub
+nltk
+deep_phonemizer~=0.0.19
+soundfile
+flask

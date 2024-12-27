@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  speech_to_text:
+    build:
+      context: ./_speech_to_text
+      dockerfile: Dockerfile
+    environment:
+      - DOCKER_CONTAINER=true
+    command: [ "python", "main.py" ]
+    volumes:
+      - ./_speech_to_text/app:/app
+    ports:
+      - "5001:5000"  
+    networks:
+      - glados-network
+
+  thinking_service:
+    build:
+      context: ./_thinking_service
+      dockerfile: Dockerfile
+    environment:
+      - DOCKER_CONTAINER=true
+    command: [ "python", "main.py" ]
+    volumes:
+      - ./_thinking_service/app:/app
+    ports:
+      - "5002:5000" 
+    networks:
+      - glados-network
+
+  text_to_speech:
+    build:
+      context: ./_text_to_speech
+      dockerfile: Dockerfile
+    environment:
+      - DOCKER_CONTAINER=true
+    command: [ "python", "main.py" ]
+    volumes:
+      - ./_text_to_speech/app:/app
+      - ./_text_to_speech/audio:/app/audio  
+    ports:
+      - "5003:5000"  
+    networks:
+      - glados-network
+
+networks:
+  glados-network:
+    external: true

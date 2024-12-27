@@ -1,0 +1,7 @@
+_speech_to_text/app/__pycache__
+
+_thinking_service/*
+
+_text_to_speech/app/models/*
+
+**/.env
